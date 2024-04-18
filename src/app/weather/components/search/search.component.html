@@ -1,0 +1,23 @@
+<form class="text-center p-3 border-round-sm h-full bg-primary font-bold">
+  <mat-card class="shadow-8 radius">
+    <mat-card-content>
+      <mat-form-field class="example-form-field">
+        <mat-label>Ciudad</mat-label>
+        <input matInput type="text" [formControl]="search" #txtTagInput>
+        @if (value) {
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+      </mat-form-field>
+      <button class="ml-4" (click)="searchCity()" mat-raised-button>Buscar</button>
+
+
+      <mat-card-content>
+        Aqui se Mostrara el historial
+      </mat-card-content>
+
+
+    </mat-card-content>
+  </mat-card>
+</form>

@@ -1,31 +1,37 @@
+<div class="grid nested-grid">
+  <div class="col-8">
+    <div class="grid">
 
-<div class="grid">
+      <div class="col-6">
+        <wind-page [weather]="weather"></wind-page>
+      </div>
 
-  <mat-card class="col-12 sm:col-6 p-2">
-
-    <mat-card-header>
-      <mat-card-title><mat-icon>cloud</mat-icon></mat-card-title>
-      <mat-card-subtitle>Tiempo en Madrid</mat-card-subtitle>
-    </mat-card-header>
+      <div class="col-6">
+        <temperature-page [weather]="weather"></temperature-page>
+      </div>
 
 
-  </mat-card>
 
-  <mat-card class="col-12 sm:col-6">
+      <div class="col-12">
+        <div class="text-center p-3 border-round-sm bg-primary font-bold">
+          <mat-card class="shadow-8 radius">
+            <mat-card-header>
+              <mat-card-title>Aqui aparecera algun grafico</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
 
-    <mat-card-header>
-      <mat-card-title>Grafico</mat-card-title>
-      <mat-card-subtitle>debajo va el grafico</mat-card-subtitle>
-    </mat-card-header>
 
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>Aqui se muestra el grafico</mat-list-item>
 
-      </mat-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    </mat-card-content>
+  <div class="col-4">
 
-  </mat-card>
+    <search-page></search-page>
 
+  </div>
 </div>

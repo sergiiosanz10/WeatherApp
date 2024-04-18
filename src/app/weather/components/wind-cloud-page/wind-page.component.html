@@ -1,0 +1,43 @@
+
+  <div class="text-start p-3 border-round-sm bg-primary font-bold">
+    <mat-card class="shadow-8 radius">
+      <mat-card-header>
+        <mat-card-title>Viento</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <div class="flex flex-column text-xl">
+          <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
+            <img matCardImage src="../../../../assets/img/wind.png">
+            <p class="ml-3">{{weather?.wind?.speed}}</p>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+  <div class="text-start p-3 pt-4 border-round-sm bg-primary font-bold">
+    <mat-card class="shadow-8 radius">
+      <mat-card-header>
+        <mat-card-title>Nubes</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content class="mt-2">
+
+        <div class="flex flex-column text-xl">
+          <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
+            <img matCardImage src="../../../../assets/img/clouds.png">
+            <p class="ml-3">{{weather?.clouds?.all | percent}}</p>
+          </div>
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+
+
