@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ForeCast, List } from '../../interfaces/forecast.interface';
 import { WeatherService } from '../../services/weather.service';
 
@@ -7,7 +7,7 @@ import { WeatherService } from '../../services/weather.service';
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent {
+export class CardComponent implements OnInit{
 
   @Input({ required: true }) forecast?: ForeCast;
 
