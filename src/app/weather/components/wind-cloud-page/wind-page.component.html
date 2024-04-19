@@ -10,7 +10,7 @@
         <div class="flex flex-column text-xl">
           <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
             <img matCardImage src="../../../../assets/img/wind.png">
-            <p class="ml-3">{{weather?.wind?.speed}}</p>
+            <p class="ml-3">{{weather?.wind?.speed}} m/s</p>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
         <div class="flex flex-column text-xl">
           <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
               <img *ngIf="weather != undefined"  class="icon" src="https://openweathermap.org/img/wn/{{weather.weather[0].icon}}@2x.png" alt="">
-            <p class="ml-3 mt-2">{{weather?.clouds?.all | percent}}</p>
+            <p class="ml-3 mt-2">{{weather?.clouds?.all }} %</p>
           </div>
         </div>
 

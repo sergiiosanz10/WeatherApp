@@ -1,25 +1,28 @@
 <form class="text-center p-3 border-round-sm h-full bg-primary font-bold">
-  <mat-card class="shadow-8 radius">
+  <mat-card class="shadow-8 radius h-21rem search">
     <mat-card-content>
-      <mat-form-field class="example-form-field mt-2 ">
+      <mat-form-field class="mt-2 w-9">
 
         <mat-label>Ciudad</mat-label>
-        <input matInput type="text" [formControl]="search">
-        <button  *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
           <mat-icon>close</mat-icon>
         </button>
 
       </mat-form-field>
-      <button class="ml-4" (click)="searchCity()" mat-raised-button>Buscar</button>
 
 
       <mat-card-content>
-        <mat-card *ngFor="let city of history" class="mb-2">
+        <div>
+          <mat-card *ngFor="let city of history" class="mb-2">
 
-          <mat-list role="list" >
-            <mat-list-item  role="listitem" (click)="value=''" (click)="searchCity()" >{{ city | titlecase }}</mat-list-item>
-          </mat-list>
-        </mat-card>
+            <mat-list role="list" >
+              <mat-list-item  role="listitem" (click)="value=''" (click)="searchCity()" >{{ city | titlecase }}</mat-list-item>
+            </mat-list>
+          </mat-card>
+
+        </div>
+
       </mat-card-content>
 
 

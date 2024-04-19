@@ -42,6 +42,7 @@ export class SearchComponent implements OnInit{
       this.weatherService.conseguirDatoForecast(data);
     });
 
+
   }
 
   ngOnInit(){

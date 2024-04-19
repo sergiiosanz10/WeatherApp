@@ -9,17 +9,17 @@
       <div class="flex flex-column text-xl">
         <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
           <img matCardImage src="../../../../assets/img/thermometer.png">
-          <p class="ml-3">{{weather?.main?.temp}} °C</p>
+          <p class="ml-3">{{weather?.main?.temp | number: '1.0-0'}} °C</p>
         </div>
       </div>
       <div class="flex flex-column text-xl">
         <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
           <img matCardImage src="../../../../assets/img/hot.png">
-          <p class="ml-3">{{weather?.main?.temp_max}} °C Max</p>
+          <p class="ml-3">{{weather?.main?.temp_max  | number: '1.0-0'}} °C Max</p>
         </div>
         <div class="flex align-items-center justify-content-start h-4rem bg-primary font-bold border-round m-2">
           <img matCardImage src="../../../../assets/img/cold.png">
-          <p class="ml-3">{{weather?.main?.temp_min}} °C Min</p>
+          <p class="ml-3">{{weather?.main?.temp_min  | number: '1.0-0'}} °C Min</p>
         </div>
       </div>
 
