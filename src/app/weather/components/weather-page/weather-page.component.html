@@ -13,18 +13,7 @@
 
 
       <div class="col-12">
-        <div class="text-center p-3 border-round-sm bg-primary font-bold">
-          <mat-card class="shadow-8 radius">
-            <mat-card-header>
-              <mat-card-title>Aqui aparecera algun grafico</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-
-
-
-            </mat-card-content>
-          </mat-card>
-        </div>
+        <weather-card [forecast]="forecast"  [datelist]="datelist"></weather-card>
       </div>
     </div>
   </div>
@@ -34,4 +23,5 @@
     <search-page></search-page>
 
   </div>
+
 </div>

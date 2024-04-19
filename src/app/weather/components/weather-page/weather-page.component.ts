@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
 import { Weather } from '../../interfaces/weather.interface';
-import { FormControl } from '@angular/forms';
-
+import { ForeCast, List } from '../../interfaces/forecast.interface';
 
 @Component({
   selector: 'weather-page',
@@ -12,20 +10,15 @@ import { FormControl } from '@angular/forms';
 export class WeatherPageComponent {
 
 
-
-
   @Input()
   weather: Weather | undefined
 
-  constructor(private weatherService:WeatherService){}
+  @Input()
+  forecast: ForeCast | undefined
+
+  @Input()
+  datelist: List[] | undefined
 
 
-  get weater():Weather | undefined{
-
-    console.log(this.weatherService.weater);
-    return this.weatherService.weater
-
-
-  }
 
 }
