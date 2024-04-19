@@ -12,4 +12,11 @@ export class CardComponent  {
 
   @Input({required:true})  datelist?: List[];
 
+  getDate(num: number){
+
+    let time = new Date(num *1000);
+
+    return time
+  }
+
 }
