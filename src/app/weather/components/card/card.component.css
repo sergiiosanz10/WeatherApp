@@ -11,3 +11,7 @@
   display: flex;
   flex-flow: row nowrap;
 }
+
+.card{
+  background-color: white !important;
+}

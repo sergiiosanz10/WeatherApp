@@ -8,16 +8,17 @@
 
         <div class="grid m-3 dates mb-2" *ngIf="datelist">
 
-        <mat-card class="mr-4 col-3 mb-3 radius"   *ngFor="let date of datelist" > <!-- Hacer Ngfor a la card-->
+        <mat-card class="mr-4 col-3 mb-3 radius card"   *ngFor="let date of datelist" > <!-- Hacer Ngfor a la card-->
           <!-- TODO: Sacar Temp, Temp_max, Temp_min, nubes, dia -->
           <div class="col">
               <div class="text-center p-3 border-round-sm bg-primary font-bold">
-                <mat-card-subtitle>{{ getDate(date.dt) | date: 'EEEE': }}</mat-card-subtitle>
+                <mat-card-title>{{ getDate(date.dt) | date: 'EEEE' | titlecase }}</mat-card-title>
+              </div>
+              <div class="text-center p-3 border-round-sm bg-primary font-bold">
+                <img class="icon" src="https://openweathermap.org/img/wn/{{date.weather[0].icon}}@2x.png" alt="">
               </div>
               <div class="text-center p-3 border-round-sm bg-primary font-bold">
                 <p>{{date.temp.max}} °C Max</p>
-              </div>
-              <div class="text-center p-3 border-round-sm bg-primary font-bold">
                 <p>{{date.temp.min}} °C Min</p>
               </div>
           </div>
