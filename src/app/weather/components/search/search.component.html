@@ -1,10 +1,10 @@
 <form class="text-center p-3 border-round-sm h-full bg-primary font-bold">
   <mat-card class="shadow-8 radius">
     <mat-card-content>
-      <mat-form-field class="example-form-field mt-2">
+      <mat-form-field class="example-form-field mt-2 ">
 
         <mat-label>Ciudad</mat-label>
-        <input matInput type="text" [formControl]="search" [(ngModel)]="value">
+        <input matInput type="text" [formControl]="search">
         <button  *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
           <mat-icon>close</mat-icon>
         </button>
@@ -14,9 +14,11 @@
 
 
       <mat-card-content>
-        <mat-card>
-          Aqui se Mostrara el historial
-          
+        <mat-card *ngFor="let city of history" class="mb-2">
+
+          <mat-list role="list" >
+            <mat-list-item  role="listitem" (click)="value=''" (click)="searchCity()" >{{ city | titlecase }}</mat-list-item>
+          </mat-list>
         </mat-card>
       </mat-card-content>
 

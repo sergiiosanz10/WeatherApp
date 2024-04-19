@@ -15,14 +15,51 @@ export class WeatherService {
   public foreCastList: ForeCast | undefined;
   public dateList: List[] | undefined;
 
+  private _tagsHistory: string[] = [];
+
   private apiKey: string =          '&appid=1f9ccab4cdafe0e22916708e85513df9&cnt=7&units=metric';
   private serviceUrl: string =      'https://api.openweathermap.org/data/2.5/weather?';
   private serviceForecast: string = 'https://api.openweathermap.org/data/2.5/forecast/daily?';
 
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadLocalStorage()
+  }
 
+
+  //Historial de busqueda
+  get tagsHistory() {
+    return [...this._tagsHistory];
+  }
+
+   organizeHistory(tag: string) {
+
+    if (this._tagsHistory.includes(tag)) {
+      this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag);
+    }
+
+    this._tagsHistory.unshift(tag);
+
+    this._tagsHistory = this.tagsHistory.splice(0, 10);
+
+    this.saveLocalStorage();
+  }
+
+  private saveLocalStorage(): void {
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory))
+  }
+
+  private loadLocalStorage(): void {
+    if (!localStorage.getItem('history')) return;
+
+    this._tagsHistory = JSON.parse(localStorage.getItem('history')!);
+
+    if(this._tagsHistory.length === 0) return;
+
+  }
+
+  //#####################
 
 
   get weater(): Weather | undefined {
