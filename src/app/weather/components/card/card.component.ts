@@ -1,22 +1,42 @@
 import { Component, Input } from '@angular/core';
 import { ForeCast, List } from '../../interfaces/forecast.interface';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'weather-card',
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
-export class CardComponent  {
+export class CardComponent {
 
-  @Input({required:true})  forecast?: ForeCast;
+  @Input({ required: true }) forecast?: ForeCast;
 
-  @Input({required:true})  datelist?: List[];
+  @Input({ required: true }) datelist?: List[];
 
-  getDate(num: number){
+  getDate(num: number) {
 
-    let time = new Date(num *1000);
+    let time = new Date(num * 1000);
 
     return time
   }
 
+
+  constructor(private weatherService: WeatherService) { }
+
+  ngOnInit(): void {
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        this.weatherService.getForecastGeo(latitude, longitude)
+          .subscribe(data => {
+            this.forecast = data;
+            this.weatherService.conseguirDatoForecast(data);
+          });
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
 }
