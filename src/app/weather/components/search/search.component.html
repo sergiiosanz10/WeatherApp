@@ -8,16 +8,17 @@
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
           <mat-icon>close</mat-icon>
         </button>
-
       </mat-form-field>
+      <button class="ml-2 delete" mat-mini-fab (click)="clearHistory()"><mat-icon>delete</mat-icon></button>
 
 
       <mat-card-content>
         <div>
-          <mat-card *ngFor="let city of history" class="mb-2">
+          <mat-card *ngFor="let city of getHistory" class="mb-2">
 
             <mat-list role="list" >
               <mat-list-item  role="listitem" (click)="value=''" (click)="searchCity()" >{{ city | titlecase }}</mat-list-item>
+              <!-- <button (click)="onDeleteCity(city)">X</button> -->
             </mat-list>
           </mat-card>
 

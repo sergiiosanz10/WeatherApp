@@ -15,10 +15,10 @@ export class WeatherService {
   public foreCastList: ForeCast | undefined;
   public dateList: List[] | undefined;
 
-  private _tagsHistory: string[] = [];
+  public _tagsHistory: string[] = [];
 
-  private apiKey: string =          '&appid=1f9ccab4cdafe0e22916708e85513df9&cnt=7&units=metric';
-  private serviceUrl: string =      'https://api.openweathermap.org/data/2.5/weather?';
+  private apiKey: string = '&appid=1f9ccab4cdafe0e22916708e85513df9&cnt=7&units=metric';
+  private serviceUrl: string = 'https://api.openweathermap.org/data/2.5/weather?';
   private serviceForecast: string = 'https://api.openweathermap.org/data/2.5/forecast/daily?';
 
 
@@ -33,7 +33,8 @@ export class WeatherService {
     return [...this._tagsHistory];
   }
 
-   organizeHistory(tag: string) {
+
+  organizeHistory(tag: string) {
 
     if (this._tagsHistory.includes(tag)) {
       this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag);
@@ -55,8 +56,13 @@ export class WeatherService {
 
     this._tagsHistory = JSON.parse(localStorage.getItem('history')!);
 
-    if(this._tagsHistory.length === 0) return;
+    if (this._tagsHistory.length === 0) return;
 
+  }
+
+  deleteCity(city: string): void {
+    this._tagsHistory = this._tagsHistory.filter(c => c !== city);
+    localStorage.removeItem(city);
   }
 
   //#####################
@@ -109,10 +115,11 @@ export class WeatherService {
 
   }
 
-
   enviardatoForecast(datoForeCast: ForeCast) {
     return datoForeCast;
 
   }
+
+
 
 }

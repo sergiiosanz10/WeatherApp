@@ -36,3 +36,12 @@
 .search::-webkit-scrollbar-thumb:hover {
   background: #dadada;
 }
+
+.delete{
+  color: white;
+  background-color: red;
+}
+
+.delete:hover{
+  background-color: #cf0606;
+}

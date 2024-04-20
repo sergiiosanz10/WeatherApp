@@ -48,4 +48,13 @@ export class SearchComponent implements OnInit{
   ngOnInit(){
     this.history = this.weatherService.tagsHistory;
   }
+
+  get getHistory(){
+    return this.weatherService.tagsHistory;
+  }
+
+
+  clearHistory(){
+    localStorage.removeItem('history');
+  }
 }
