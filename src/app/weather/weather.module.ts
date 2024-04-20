@@ -14,6 +14,7 @@ import { CardComponent } from './components/card/card.component';
 
 import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
+import { RecomendationsComponent } from './components/recomendations/recomendations.component';
 
 registerLocaleData(es);
 
@@ -27,6 +28,7 @@ registerLocaleData(es);
     TemperaturePageComponent,
     SearchComponent,
     CardComponent,
+    RecomendationsComponent,
   ],
   imports: [
     CommonModule,
