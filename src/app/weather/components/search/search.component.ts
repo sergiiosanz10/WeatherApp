@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit{
   public value: string = '';
 
 
-  public search  = new FormControl('')
+  public search: FormControl<string | null>  = new FormControl('')
 
   searchCity(){
 
@@ -42,6 +42,7 @@ export class SearchComponent implements OnInit{
       this.weatherService.conseguirDatoForecast(data);
     });
 
+    this.search.setValue('');
 
   }
 
