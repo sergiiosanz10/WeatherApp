@@ -18,10 +18,10 @@ export class SearchComponent implements OnInit{
 
   constructor(private weatherService:WeatherService){}
 
-  value = '';
+  public value: string = '';
 
 
-  search = new FormControl('')
+  public search  = new FormControl('')
 
   searchCity(){
 
@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit{
 
     });
 
-    //CONSEGUIR DATOS DE LOS 16 DIAS
+    //CONSEGUIR DATOS DE LOS 7 DIAS
     this.weatherService.getForecast(this.search.value!)
     .subscribe(data => {
       this.forecast=data;
@@ -45,16 +45,31 @@ export class SearchComponent implements OnInit{
 
   }
 
+  searchTagCity(tag: string){
+    this.weatherService.getweather(tag)
+    .subscribe(data => {
+      this.weather=data;
+      this.weatherService.conseguirDatos(data);
+    });
+
+    //CONSEGUIR DATOS DE LOS 7 DIAS
+    this.weatherService.getForecast(tag)
+    .subscribe(data => {
+      this.forecast=data;
+      this.weatherService.conseguirDatoForecast(data);
+    });
+
+  }
+
+  deleteTagCity(tag: string){
+    this.weatherService.deleteTag(tag);
+  }
+
   ngOnInit(){
     this.history = this.weatherService.tagsHistory;
   }
 
   get getHistory(){
     return this.weatherService.tagsHistory;
-  }
-
-
-  clearHistory(){
-    localStorage.removeItem('history');
   }
 }

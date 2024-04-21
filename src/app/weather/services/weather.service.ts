@@ -60,9 +60,9 @@ export class WeatherService {
 
   }
 
-  deleteCity(city: string): void {
-    this._tagsHistory = this._tagsHistory.filter(c => c !== city);
-    localStorage.removeItem(city);
+  deleteTag(tag: string) {
+    this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag);
+    this.saveLocalStorage();
   }
 
   //#####################

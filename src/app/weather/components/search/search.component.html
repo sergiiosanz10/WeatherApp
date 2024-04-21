@@ -1,27 +1,20 @@
-<form class="text-center p-3 border-round-sm bg-primary font-bold">
+<form class="text-center p-3 border-round-sm bg-primary font-bold" >
   <mat-card class="shadow-8 radius h-21rem search">
     <mat-card-content>
       <mat-form-field class="mt-2 w-9">
 
         <mat-label>Ciudad</mat-label>
         <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()">
-        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-          <mat-icon>close</mat-icon>
-        </button>
+        <button *ngIf="value" (click)="value=''"></button>
       </mat-form-field>
-      <button class="ml-2 delete" mat-mini-fab (click)="clearHistory()"><mat-icon>delete</mat-icon></button>
 
 
       <mat-card-content>
         <div>
-          <mat-card *ngFor="let city of getHistory" class="mb-2">
-
-            <mat-list role="list" >
-              <mat-list-item  role="listitem" (click)="value=''" (click)="searchCity()" >{{ city | titlecase }}</mat-list-item>
-              <!-- <button (click)="onDeleteCity(city)">X</button> -->
+            <mat-list role="list" class="flex align-items-center" *ngFor="let city of getHistory">
+              <button mat-flat-button  role="listitem" class="w-25rem ml-6" (click)="searchTagCity(city)" >{{ city | titlecase }}</button>
+              <button mat-icon-button role="listitem" class="ml-2 delete" (click)="deleteTagCity(city)"><mat-icon>delete</mat-icon></button>
             </mat-list>
-          </mat-card>
-
         </div>
 
       </mat-card-content>
