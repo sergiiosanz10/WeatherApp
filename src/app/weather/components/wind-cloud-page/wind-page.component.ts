@@ -9,7 +9,10 @@ import { WeatherService } from '../../services/weather.service';
 })
 export class WindPageComponent {
 
-  @Input({required:true})  weather?: Weather;
 
   constructor(private weatherService:WeatherService){}
+
+  get weather(): Weather | undefined{
+    return this.weatherService.weatherList
+  }
 }

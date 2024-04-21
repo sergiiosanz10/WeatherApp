@@ -11,27 +11,33 @@ import { WeatherService } from '../../services/weather.service';
 })
 export class WeatherPageComponent implements OnInit{
 
-
-  @Input()
-  weather: Weather | undefined
-
-  @Input()
-  forecast: ForeCast | undefined
-
-  @Input()
-  datelist: List[] | undefined
+  @Input() weathers: Weather | undefined;
 
   constructor(private weatherService:WeatherService){}
 
+  get weather(): Weather | undefined{
+    return this.weatherService.weatherList
+  }
+
+  get forecast(): ForeCast | undefined{
+    return this.weatherService.foreCastList
+  }
+
+
+  get datelist(): List[] | undefined{
+    return this.weatherService.dateList
+  }
+
+
   ngOnInit(): void {
-    
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
       this.weatherService.getweatherGeo(latitude, longitude)
       .subscribe(data => {
-        this.weather=data;
+        this.weathers=data;
         this.weatherService.conseguirDatos(data);
       });
     });

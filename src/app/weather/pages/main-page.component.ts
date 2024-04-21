@@ -1,7 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { Weather } from '../interfaces/weather.interface';
-import { WeatherService } from '../services/weather.service';
-import { ForeCast, List } from '../interfaces/forecast.interface';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main-page',
@@ -10,18 +7,5 @@ import { ForeCast, List } from '../interfaces/forecast.interface';
 })
 export class MainPageComponent {
 
-  constructor(private weatherService:WeatherService){}
-
-  get weather(): Weather | undefined{
-    return this.weatherService.weatherList
-  }
-
-  get forecast(): ForeCast | undefined{
-    return this.weatherService.foreCastList
-  }
-
-  get datelist(): List[] | undefined{
-    return this.weatherService.dateList
-  }
 
 }
