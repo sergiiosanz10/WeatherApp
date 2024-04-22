@@ -58,7 +58,11 @@ get weatherBg(): string {
       return 'clouds';
     } else if (weather === 'Rain') {
       return 'rain';
-    } else {
+    }else if(weather === 'Snow'){
+      return 'snow';
+
+    }
+    else {
       return 'clear';
     }
   } else {

@@ -25,4 +25,9 @@ img{
   background-size: cover;
 }
 
+.snow{
+  background-image: url('../../../../assets/img/nieve.jpg');
+  background-size: cover;
+}
+
 
