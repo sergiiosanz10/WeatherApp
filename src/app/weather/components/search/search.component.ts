@@ -29,12 +29,16 @@ export class SearchComponent implements OnInit{
     this.history = this.weatherService.tagsHistory;
   }
 
+
   searchCity(){
 
     if(this.search.value === "") return;
-    this.weatherService.organizeHistory(this.search.value!);
 
-    this.weatherService.getweather(this.search.value!)
+    let searchValue = this.search.value?.replace(/ /g, ",");
+
+    this.weatherService.organizeHistory(searchValue!);
+
+    this.weatherService.getweather(searchValue!)
     .subscribe(data => {
       this.weather=data;
       this.weatherService.conseguirDatos(data);
@@ -42,7 +46,7 @@ export class SearchComponent implements OnInit{
     });
 
     //CONSEGUIR DATOS DE LOS 7 DIAS
-    this.weatherService.getForecast(this.search.value!)
+    this.weatherService.getForecast(searchValue!)
     .subscribe(data => {
       this.forecast=data;
       this.weatherService.conseguirDatoForecast(data);
