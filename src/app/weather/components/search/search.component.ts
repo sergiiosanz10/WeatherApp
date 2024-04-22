@@ -3,82 +3,94 @@ import { Weather } from '../../interfaces/weather.interface';
 import { WeatherService } from '../../services/weather.service';
 import { FormControl } from '@angular/forms';
 import { ForeCast } from '../../interfaces/forecast.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'search-page',
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
 
-// Variables privadas
+  // Variables privadas
   weather: Weather | undefined;
   forecast: ForeCast | undefined;
-  history: string[] | undefined= [];
+  history: string[] | undefined = [];
+
+
 
   // Variables publicas
   public value: string = '';
-  public search: FormControl<string | null>  = new FormControl('')
+  public search: FormControl<string | null> = new FormControl('')
 
-  constructor(private weatherService:WeatherService){}
+  constructor(private weatherService: WeatherService, private _snackBar: MatSnackBar) { }
 
 
   // Lifecylce
 
-  ngOnInit(){
+  ngOnInit() {
     this.history = this.weatherService.tagsHistory;
   }
 
-
-  searchCity(){
-
-    if(this.search.value === "") return;
-
-    let searchValue = this.search.value?.replace(/ /g, ",");
-
-    this.weatherService.organizeHistory(searchValue!);
-
-    this.weatherService.getweather(searchValue!)
-    .subscribe(data => {
-      this.weather=data;
-      this.weatherService.conseguirDatos(data);
-
-    });
-
-    //CONSEGUIR DATOS DE LOS 7 DIAS
-    this.weatherService.getForecast(searchValue!)
-    .subscribe(data => {
-      this.forecast=data;
-      this.weatherService.conseguirDatoForecast(data);
-    });
-
-    this.search.setValue('');
-
+  openSnackBar() {
+      this._snackBar.open("Introduce una cidudad");
   }
 
-  searchTagCity(tag: string){
+
+
+  searchCity() {
+
+    if (this.search.value === "") {
+      this.openSnackBar();
+
+    } else {
+
+
+      let searchValue = this.search.value?.replace(/ /g, ",");
+
+      this.weatherService.organizeHistory(searchValue!);
+
+      this.weatherService.getweather(searchValue!)
+        .subscribe(data => {
+          this.weather = data;
+          this.weatherService.conseguirDatos(data);
+
+        });
+
+      //CONSEGUIR DATOS DE LOS 7 DIAS
+      this.weatherService.getForecast(searchValue!)
+        .subscribe(data => {
+          this.forecast = data;
+          this.weatherService.conseguirDatoForecast(data);
+        });
+
+      this.search.setValue('');
+    }
+  }
+
+  searchTagCity(tag: string) {
     this.weatherService.getweather(tag)
-    .subscribe(data => {
-      this.weather=data;
-      this.weatherService.conseguirDatos(data);
-    });
+      .subscribe(data => {
+        this.weather = data;
+        this.weatherService.conseguirDatos(data);
+      });
 
     //CONSEGUIR DATOS DE LOS 7 DIAS
     this.weatherService.getForecast(tag)
-    .subscribe(data => {
-      this.forecast=data;
-      this.weatherService.conseguirDatoForecast(data);
-    });
+      .subscribe(data => {
+        this.forecast = data;
+        this.weatherService.conseguirDatoForecast(data);
+      });
 
   }
 
-  deleteTagCity(tag: string){
+  deleteTagCity(tag: string) {
     this.weatherService.deleteTag(tag);
   }
 
 
 
-  get getHistory(){
+  get getHistory() {
     return this.weatherService.tagsHistory;
   }
 }
