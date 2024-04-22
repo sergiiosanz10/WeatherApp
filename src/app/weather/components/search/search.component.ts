@@ -11,17 +11,23 @@ import { ForeCast } from '../../interfaces/forecast.interface';
 })
 export class SearchComponent implements OnInit{
 
-
+// Variables privadas
   weather: Weather | undefined;
   forecast: ForeCast | undefined;
   history: string[] | undefined= [];
 
+  // Variables publicas
+  public value: string = '';
+  public search: FormControl<string | null>  = new FormControl('')
+
   constructor(private weatherService:WeatherService){}
 
-  public value: string = '';
 
+  // Lifecylce
 
-  public search: FormControl<string | null>  = new FormControl('')
+  ngOnInit(){
+    this.history = this.weatherService.tagsHistory;
+  }
 
   searchCity(){
 
@@ -66,9 +72,7 @@ export class SearchComponent implements OnInit{
     this.weatherService.deleteTag(tag);
   }
 
-  ngOnInit(){
-    this.history = this.weatherService.tagsHistory;
-  }
+
 
   get getHistory(){
     return this.weatherService.tagsHistory;

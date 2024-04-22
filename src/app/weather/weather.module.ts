@@ -2,6 +2,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 import { MainPageComponent } from './pages/main-page.component';
@@ -11,10 +12,11 @@ import { WindPageComponent } from './components/wind-cloud-page/wind-page.compon
 import { TemperaturePageComponent } from './components/temperature-page/temperature-page.component';
 import { SearchComponent } from './components/search/search.component';
 import { CardComponent } from './components/card/card.component';
+import { GraphicPageComponent } from './components/graphic-page/graphic-page.component';
+import { RecomendationsComponent } from './components/recomendations/recomendations.component';
 
 import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
-import { RecomendationsComponent } from './components/recomendations/recomendations.component';
 
 registerLocaleData(es);
 
@@ -29,11 +31,13 @@ registerLocaleData(es);
     SearchComponent,
     CardComponent,
     RecomendationsComponent,
+    GraphicPageComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    NgxChartsModule
 
   ],
   exports: [

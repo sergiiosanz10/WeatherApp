@@ -37,7 +37,7 @@ export class RecomendationsComponent {
 
   get recomendations(): string[] {
     if(this.weather){
-      if(this.weather.clouds.all < 50){
+      if(this.weather.clouds.all < 20){
         return this.goodDay;
       } else {
         return this.badDay;

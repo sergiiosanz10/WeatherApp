@@ -90,7 +90,6 @@ export class WeatherService {
   }
 
   //FORECAST
-  // TODO: Pipes :D
 
   get forecast(): ForeCast | undefined {
     return this.foreCastList
