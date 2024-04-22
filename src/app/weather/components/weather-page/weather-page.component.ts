@@ -46,4 +46,24 @@ export class WeatherPageComponent implements OnInit{
   }
 }
 
+//Fondo segun el tiempo
+get weatherBg(): string {
+  const weatherData = this.weatherService.weatherList;
+
+  if (weatherData) {
+    const weather = weatherData.weather[0].main;
+    if (weather === 'Clear') {
+      return 'clear';
+    } else if (weather === 'Clouds') {
+      return 'clouds';
+    } else if (weather === 'Rain') {
+      return 'rain';
+    } else {
+      return 'clear';
+    }
+  } else {
+    return 'clear';
+  }
+}
+
 }

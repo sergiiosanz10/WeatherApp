@@ -10,3 +10,19 @@ img{
   -o-border-radius: 20px;
 }
 
+.clear {
+  background-image: url('../../../../assets/img/despejado.jpeg');
+  background-size: cover;
+}
+
+.clouds {
+  background-image: url('../../../../assets/img/nublado.png');
+  background-size: cover;
+}
+
+.rain{
+  background-image: url('../../../../assets/img/lluvia.jpg');
+  background-size: cover;
+}
+
+
