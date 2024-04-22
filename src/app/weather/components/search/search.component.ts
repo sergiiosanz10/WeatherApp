@@ -37,6 +37,10 @@ export class SearchComponent implements OnInit {
     this._snackBar.open("Introduce una cidudad");
   }
 
+  changeSpace(){
+    this.search.setValue(this.search.value!.replace(' ', ', '));
+  }
+
 
   searchCity() {
 
@@ -47,20 +51,21 @@ export class SearchComponent implements OnInit {
       return;
     } else {
 
+      this.changeSpace();
 
-      let searchValue = this.search.value?.replace(/ /g, ",");
+      this.weatherService.organizeHistory(this.search.value!);
 
-      this.weatherService.organizeHistory(searchValue!);
-
-      this.weatherService.getweather(searchValue!)
+      this.weatherService.getweather(this.search.value!)
         .subscribe(data => {
           this.weather = data;
+          console.log(data);
+
           this.weatherService.conseguirDatos(data);
 
         });
 
       //CONSEGUIR DATOS DE LOS 7 DIAS
-      this.weatherService.getForecast(searchValue!)
+      this.weatherService.getForecast(this.search.value!)
         .subscribe(data => {
           this.forecast = data;
           this.weatherService.conseguirDatoForecast(data);
@@ -72,7 +77,6 @@ export class SearchComponent implements OnInit {
 
   searchTagCity(tag: string) {
 
-    if (this.search.value === "") return this.openSnackBar();
 
     this.weatherService.getweather(tag)
       .subscribe(data => {

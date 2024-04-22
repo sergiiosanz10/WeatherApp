@@ -4,7 +4,7 @@
       <mat-form-field class="mt-2 w-9">
 
         <mat-label>Ciudad</mat-label>
-        <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()" >
+        <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()" (keyup.space)="changeSpace()" >
       </mat-form-field>
 
 
