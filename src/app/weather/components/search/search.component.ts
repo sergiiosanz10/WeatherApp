@@ -42,7 +42,7 @@ export class SearchComponent implements OnInit {
 
     if (this.search.value === "") {
       this.openSnackBar();
-
+      return;
     } else {
 
 
@@ -69,6 +69,9 @@ export class SearchComponent implements OnInit {
   }
 
   searchTagCity(tag: string) {
+
+    if (this.search.value === "") return this.openSnackBar();
+
     this.weatherService.getweather(tag)
       .subscribe(data => {
         this.weather = data;
