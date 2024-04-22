@@ -28,20 +28,22 @@ export class SearchComponent implements OnInit {
 
   // Lifecylce
 
+
   ngOnInit() {
     this.history = this.weatherService.tagsHistory;
   }
 
   openSnackBar() {
-      this._snackBar.open("Introduce una cidudad");
+    this._snackBar.open("Introduce una cidudad");
   }
-
 
 
   searchCity() {
 
     if (this.search.value === "") {
+
       this.openSnackBar();
+
       return;
     } else {
 
