@@ -1,7 +1,7 @@
 <form class="text-center p-3 border-round-sm bg-primary font-bold" >
   <mat-card class="shadow-8 radius h-21rem search">
     <mat-card-content>
-      <mat-form-field class="mt-2 w-9">
+      <mat-form-field class="mt-2 w-10">
 
         <mat-label>Ciudad</mat-label>
         <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()" (input)="autoComplete()" (keyup.space)="changeSpace()"  [matAutocomplete]="auto">
@@ -26,7 +26,7 @@
       <mat-card-content>
         <div>
             <mat-list role="list" class="flex align-items-center" *ngFor="let city of getHistory">
-              <button type="button" mat-flat-button  role="listitem" class="w-25rem ml-6" (click)="searchTagCity(city)" >{{ city.name| titlecase }}, {{city.country}}</button>
+              <button type="button" mat-flat-button  role="listitem" class="w-24rem ml-6" (click)="searchTagCity(city)" >{{ city.name| titlecase }}, {{city.country}}</button>
               <button type="button" mat-icon-button role="listitem" class="ml-2 delete" (click)="deleteTagCity(city)"><mat-icon>delete</mat-icon></button>
             </mat-list>
         </div>
