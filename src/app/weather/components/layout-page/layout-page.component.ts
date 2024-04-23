@@ -5,7 +5,6 @@ import { WeatherService } from '../../services/weather.service';
 @Component({
   selector: 'layout-page',
   templateUrl: './layout-page.component.html',
-  styleUrl: './layout-page.component.css'
 })
 export class LayoutPageComponent {
   public sidebarItems = [
@@ -13,7 +12,7 @@ export class LayoutPageComponent {
   ]
 
   constructor(private weatherService: WeatherService){}
-  
+
   get weather(): Weather | undefined{
     return this.weatherService.weatherList
   }

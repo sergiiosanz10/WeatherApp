@@ -11,23 +11,27 @@ img{
 }
 
 .clear {
-  background-image: url('../../../../assets/img/despejado.jpeg');
+  background-image: url('../../../../assets/img/despejado-min.jpeg');
   background-size: cover;
 }
 
 .clouds {
-  background-image: url('../../../../assets/img/nublado.jpg');
+  background-image: url('../../../../assets/img/nublado-min.jpg');
   background-size: cover;
 }
 
 .rain{
-  background-image: url('../../../../assets/img/lluvia.jpg');
+  background-image: url('../../../../assets/img/lluvia-min.jpg');
   background-size: cover;
 }
 
 .snow{
-  background-image: url('../../../../assets/img/nieve.jpg');
+  background-image: url('../../../../assets/img/nieve-min.jpg');
   background-size: cover;
 }
 
+.night{
+  background-image: url('../../../../assets/img/noche-min.jpg');
+  background-size: cover;
+}
 
