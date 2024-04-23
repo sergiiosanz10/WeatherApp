@@ -110,9 +110,11 @@ export class SearchComponent implements OnInit {
 
   searchTagCity(tag: City) {
 
-    //Convierto tag a string y luego a objeto para poder acceder a sus propiedades
+    //Convierto tag a string
     const cityString = JSON.stringify(tag);
+    //Convierto el string a un objeto
     const cityObject = JSON.parse(cityString);
+    //Accedo a las propiedades de los objetos
     const city = cityObject.name;
     const country = cityObject.country;
 
