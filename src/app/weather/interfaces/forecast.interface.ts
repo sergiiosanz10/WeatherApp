@@ -7,12 +7,12 @@ export interface ForeCast {
 }
 
 export interface City {
-  id:         number;
+  id?:         number;
   name:       string;
-  coord:      Coord;
-  country:    string;
-  population: number;
-  timezone:   number;
+  coord?:      Coord;
+  country?:    string;
+  population?: number;
+  timezone?:   number;
 }
 
 export interface Coord {

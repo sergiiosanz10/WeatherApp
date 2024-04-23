@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Weather } from '../../interfaces/weather.interface';
 import { WeatherService } from '../../services/weather.service';
 import { FormControl } from '@angular/forms';
-import { ForeCast } from '../../interfaces/forecast.interface';
+import { City, ForeCast } from '../../interfaces/forecast.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { CityAutocomplete } from '../../interfaces/city.interface';
@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
   // Variables privadas
   weather: Weather | undefined;
   forecast: ForeCast | undefined;
-  history: string[] | undefined = [];
+  history: City[] | undefined = [];
 
   city: CityAutocomplete[] = [];
   selectedCity?: CityAutocomplete;
@@ -85,10 +85,10 @@ export class SearchComponent implements OnInit {
 
       this.changeSpace();
 
-    this.weatherService.organizeHistory(this.search.value!);
+    const city: City = { name: this.search.value!, country: this.selectedCity!.country};
+    this.weatherService.organizeHistory(city);
 
-
-    this.weatherService.getweather(this.search.value!)
+    this.weatherService.getweather(this.search.value!, this.selectedCity!.country)
       .subscribe(data => {
         this.weather = data;
         console.log(data);
@@ -98,7 +98,7 @@ export class SearchComponent implements OnInit {
       });
 
     //CONSEGUIR DATOS DE LOS 7 DIAS
-    this.weatherService.getForecast(this.search.value!)
+    this.weatherService.getForecast(this.search.value!, this.selectedCity!.country)
       .subscribe(data => {
         this.forecast = data;
         this.weatherService.conseguirDatoForecast(data);
@@ -108,17 +108,22 @@ export class SearchComponent implements OnInit {
 
   }
 
-  searchTagCity(tag: string) {
+  searchTagCity(tag: City) {
 
+    //Convierto tag a string y luego a objeto para poder acceder a sus propiedades
+    const cityString = JSON.stringify(tag);
+    const cityObject = JSON.parse(cityString);
+    const city = cityObject.name;
+    const country = cityObject.country;
 
-    this.weatherService.getweather(tag)
+    this.weatherService.getweather(city, country)
       .subscribe(data => {
         this.weather = data;
         this.weatherService.conseguirDatos(data);
       });
 
     //CONSEGUIR DATOS DE LOS 7 DIAS
-    this.weatherService.getForecast(tag)
+    this.weatherService.getForecast(city, country)
       .subscribe(data => {
         this.forecast = data;
         this.weatherService.conseguirDatoForecast(data);
@@ -126,7 +131,7 @@ export class SearchComponent implements OnInit {
 
   }
 
-  deleteTagCity(tag: string) {
+  deleteTagCity(tag: City) {
     this.weatherService.deleteTag(tag);
   }
 

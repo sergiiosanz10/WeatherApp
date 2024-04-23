@@ -16,7 +16,7 @@ export class WeatherService {
   public foreCastList: ForeCast | undefined;
   public dateList: List[] | undefined;
 
-  public _tagsHistory: string[] = [];
+  public _tagsHistory: City[] = [];
 
   private apiKey: string = '&appid=1f9ccab4cdafe0e22916708e85513df9';
   private serviceUrl: string = 'https://api.openweathermap.org/data/2.5/weather?';
@@ -33,8 +33,8 @@ export class WeatherService {
   }
 
   //City Autocomplete
-  getSuggestions( city: string ): Observable<CityAutocomplete[]> {
-    return this.http.get<CityAutocomplete[]>(`${ this.countries }q=${city}&limit=3${this.apiKey}`);
+  getSuggestions(city: string): Observable<CityAutocomplete[]> {
+    return this.http.get<CityAutocomplete[]>(`${this.countries}q=${city}&limit=3${this.apiKey}`);
   }
 
 
@@ -44,13 +44,15 @@ export class WeatherService {
   }
 
 
-  organizeHistory(tag: string) {
+  organizeHistory(city: City) {
 
-    if (this._tagsHistory.includes(tag)) {
-      this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag);
+    const existingCity = this._tagsHistory.find(oldCity => oldCity.name === city.name && oldCity.country === city.country);
+
+    if (existingCity) {
+      this._tagsHistory = this._tagsHistory.filter(oldCity => oldCity !== existingCity);
     }
 
-    this._tagsHistory.unshift(tag);
+    this._tagsHistory.unshift(city);
 
     this._tagsHistory = this.tagsHistory.splice(0, 10);
 
@@ -70,8 +72,8 @@ export class WeatherService {
 
   }
 
-  deleteTag(tag: string) {
-    this._tagsHistory = this._tagsHistory.filter((oldTag) => oldTag !== tag);
+  deleteTag(city: City) {
+    this._tagsHistory = this._tagsHistory.filter((oldCity) => oldCity !== city);
     this.saveLocalStorage();
   }
 
@@ -82,8 +84,8 @@ export class WeatherService {
     return this.weatherList
   }
 
-  getweather(city: string | undefined): Observable<Weather> {
-    return this.http.get<Weather>(`${this.serviceUrl}q=${city}${this.apiKey}&cnt=7&units=metric`);
+  getweather(city: string | undefined, country: string | undefined): Observable<Weather> {
+    return this.http.get<Weather>(`${this.serviceUrl}q=${city},${country}${this.apiKey}&cnt=7&units=metric`);
   }
 
   //Geolocation
@@ -109,8 +111,8 @@ export class WeatherService {
     return this.dateList
   }
 
-  getForecast(city: string | undefined): Observable<ForeCast> {
-    return this.http.get<ForeCast>(`${this.serviceForecast}q=${city}${this.apiKey}&units=metric`);
+  getForecast(city: string | undefined, country: string | undefined): Observable<ForeCast> {
+    return this.http.get<ForeCast>(`${this.serviceForecast}q=${city},${country}${this.apiKey}&units=metric`);
   }
 
   getForecastGeo(lat: number, lon: number): Observable<ForeCast> {
