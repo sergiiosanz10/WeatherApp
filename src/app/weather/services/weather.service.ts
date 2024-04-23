@@ -25,9 +25,6 @@ export class WeatherService {
 
 
 
-
-
-
   constructor(private http: HttpClient) {
     this.loadLocalStorage()
   }

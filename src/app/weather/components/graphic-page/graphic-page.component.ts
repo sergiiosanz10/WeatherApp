@@ -8,13 +8,15 @@ import { Graphic, Series } from '../../interfaces/graphic.interface';
   templateUrl: './graphic-page.component.html',
   styleUrl: './graphic-page.component.css'
 })
-export class GraphicPageComponent {
+export class GraphicPageComponent implements OnInit{
+  @Input({required: true}) search: List[] | undefined;
+
+
 
   ngOnInit(): void {
     this.multi=  this.getGraphics()
   }
 
-  @Input({required: true}) search: List[] | undefined
 
   multi: Graphic[] = []
   view: [number, number] = [700, 300];
