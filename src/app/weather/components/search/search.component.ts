@@ -33,8 +33,10 @@ export class SearchComponent implements OnInit {
     this.history = this.weatherService.tagsHistory;
   }
 
-  openSnackBar() {
-    this._snackBar.open("Introduce una cidudad");
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000, // Duración en milisegundos
+    });
   }
 
   changeSpace(){
@@ -46,9 +48,9 @@ export class SearchComponent implements OnInit {
 
     if (this.search.value === "") {
 
-      this.openSnackBar();
+      this.openSnackBar('Introduce una ciudad valida!!', 'Cerrar');
 
-      return;
+
     } else {
 
       this.changeSpace();

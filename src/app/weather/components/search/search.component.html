@@ -11,8 +11,8 @@
       <mat-card-content>
         <div>
             <mat-list role="list" class="flex align-items-center" *ngFor="let city of getHistory">
-              <button mat-flat-button  role="listitem" class="w-25rem ml-6" (click)="searchTagCity(city)" >{{ city | titlecase }}</button>
-              <button mat-icon-button role="listitem" class="ml-2 delete" (click)="deleteTagCity(city)"><mat-icon>delete</mat-icon></button>
+              <button type="button" mat-flat-button  role="listitem" class="w-25rem ml-6" (click)="searchTagCity(city)" >{{ city | titlecase }}</button>
+              <button type="button" mat-icon-button role="listitem" class="ml-2 delete" (click)="deleteTagCity(city)"><mat-icon>delete</mat-icon></button>
             </mat-list>
         </div>
 
