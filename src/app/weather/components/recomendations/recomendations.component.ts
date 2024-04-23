@@ -11,9 +11,7 @@ export class RecomendationsComponent {
 
   public goodDay: string[] = [
     'Jugar a fútbol',
-    'Ir a la playa',
     'Hacer una barbacoa',
-    'Ir a la piscina',
     'Hacer una excursión',
     'Ir a la montaña',
     'Hacer una ruta en bicicleta'
@@ -24,9 +22,7 @@ export class RecomendationsComponent {
     'Ver una película',
     'Hacer una maratón de series',
     'Leer un libro',
-    'Hacer un puzzle',
     'Hacer una receta de cocina',
-    'Hacer un curso online'
   ];
 
   constructor(private weatherService: WeatherService) { }
