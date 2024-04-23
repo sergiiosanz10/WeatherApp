@@ -4,6 +4,8 @@ import { WeatherService } from '../../services/weather.service';
 import { FormControl } from '@angular/forms';
 import { ForeCast } from '../../interfaces/forecast.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { CityAutocomplete } from '../../interfaces/city.interface';
 
 @Component({
   selector: 'search-page',
@@ -17,16 +19,20 @@ export class SearchComponent implements OnInit {
   forecast: ForeCast | undefined;
   history: string[] | undefined = [];
 
+  city: CityAutocomplete[] = [];
+  selectedCity?: CityAutocomplete;
+
 
 
   // Variables publicas
   public value: string = '';
-  public search: FormControl<string | null> = new FormControl('')
+  public search: FormControl<string | null> = new FormControl('');
 
   constructor(private weatherService: WeatherService, private _snackBar: MatSnackBar) { }
 
 
   // Lifecylce
+
 
 
   ngOnInit() {
@@ -39,9 +45,33 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  changeSpace(){
+  changeSpace() {
     this.search.setValue(this.search.value!.replace(' ', ', '));
   }
+
+  //Autocompletado
+
+  onSelectedOption(event: MatAutocompleteSelectedEvent): void {
+
+    if (!event.option.value) {
+      this.selectedCity = undefined;
+      return;
+    }
+
+    const city: CityAutocomplete = event.option.value;
+    this.search.setValue(city.name);
+
+    this.selectedCity = city;
+
+  }
+
+  autoComplete() {
+    const value: string = this.search.value || '';
+
+    this.weatherService.getSuggestions(value)
+      .subscribe(city => this.city = city);
+  }
+  //##########################
 
 
   searchCity() {
@@ -51,30 +81,31 @@ export class SearchComponent implements OnInit {
       this.openSnackBar('Introduce una ciudad valida!!', 'Cerrar');
 
 
-    } else {
+    } else
 
       this.changeSpace();
 
-      this.weatherService.organizeHistory(this.search.value!);
+    this.weatherService.organizeHistory(this.search.value!);
 
-      this.weatherService.getweather(this.search.value!)
-        .subscribe(data => {
-          this.weather = data;
-          console.log(data);
 
-          this.weatherService.conseguirDatos(data);
+    this.weatherService.getweather(this.search.value!)
+      .subscribe(data => {
+        this.weather = data;
+        console.log(data);
 
-        });
+        this.weatherService.conseguirDatos(data);
 
-      //CONSEGUIR DATOS DE LOS 7 DIAS
-      this.weatherService.getForecast(this.search.value!)
-        .subscribe(data => {
-          this.forecast = data;
-          this.weatherService.conseguirDatoForecast(data);
-        });
+      });
 
-      this.search.setValue('');
-    }
+    //CONSEGUIR DATOS DE LOS 7 DIAS
+    this.weatherService.getForecast(this.search.value!)
+      .subscribe(data => {
+        this.forecast = data;
+        this.weatherService.conseguirDatoForecast(data);
+      });
+
+    this.search.setValue('');
+
   }
 
   searchTagCity(tag: string) {

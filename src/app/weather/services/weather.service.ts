@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Weather } from '../interfaces/weather.interface';
 import { Observable } from 'rxjs';
-import { ForeCast, List } from '../interfaces/forecast.interface';
+import { City, ForeCast, List } from '../interfaces/forecast.interface';
+import { CityAutocomplete } from '../interfaces/city.interface';
 
 
 
@@ -17,14 +18,23 @@ export class WeatherService {
 
   public _tagsHistory: string[] = [];
 
-  private apiKey: string = '&appid=1f9ccab4cdafe0e22916708e85513df9&cnt=7&units=metric';
+  private apiKey: string = '&appid=1f9ccab4cdafe0e22916708e85513df9';
   private serviceUrl: string = 'https://api.openweathermap.org/data/2.5/weather?';
   private serviceForecast: string = 'https://api.openweathermap.org/data/2.5/forecast/daily?';
+  private countries: string = 'http://api.openweathermap.org/geo/1.0/direct?';
+
+
+
 
 
 
   constructor(private http: HttpClient) {
     this.loadLocalStorage()
+  }
+
+  //City Autocomplete
+  getSuggestions( city: string ): Observable<CityAutocomplete[]> {
+    return this.http.get<CityAutocomplete[]>(`${ this.countries }q=${city}&limit=3${this.apiKey}`);
   }
 
 
@@ -73,12 +83,12 @@ export class WeatherService {
   }
 
   getweather(city: string | undefined): Observable<Weather> {
-    return this.http.get<Weather>(`${this.serviceUrl}q=${city}${this.apiKey}`);
+    return this.http.get<Weather>(`${this.serviceUrl}q=${city}${this.apiKey}&cnt=7&units=metric`);
   }
 
   //Geolocation
   getweatherGeo(lat: number, lon: number): Observable<Weather> {
-    return this.http.get<Weather>(`${this.serviceUrl}lat=${lat}&lon=${lon}${this.apiKey}`);
+    return this.http.get<Weather>(`${this.serviceUrl}lat=${lat}&lon=${lon}${this.apiKey}&units=metric`);
   }
 
   conseguirDatos(dato: Weather) {
@@ -100,11 +110,11 @@ export class WeatherService {
   }
 
   getForecast(city: string | undefined): Observable<ForeCast> {
-    return this.http.get<ForeCast>(`${this.serviceForecast}q=${city}${this.apiKey}`);
+    return this.http.get<ForeCast>(`${this.serviceForecast}q=${city}${this.apiKey}&units=metric`);
   }
 
   getForecastGeo(lat: number, lon: number): Observable<ForeCast> {
-    return this.http.get<ForeCast>(`${this.serviceForecast}lat=${lat}&lon=${lon}${this.apiKey}`);
+    return this.http.get<ForeCast>(`${this.serviceForecast}lat=${lat}&lon=${lon}${this.apiKey}&units=metric`);
   }
 
   conseguirDatoForecast(datoForecast: ForeCast) {

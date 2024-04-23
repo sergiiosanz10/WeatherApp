@@ -4,7 +4,22 @@
       <mat-form-field class="mt-2 w-9">
 
         <mat-label>Ciudad</mat-label>
-        <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()" (keyup.space)="changeSpace()" >
+        <input matInput type="text" [formControl]="search" (keyup.enter)="searchCity()" (input)="autoComplete()" (keyup.space)="changeSpace()"  [matAutocomplete]="auto">
+
+        <mat-autocomplete autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="onSelectedOption( $event )"
+        >
+        <mat-option *ngFor="let city of city" [value]="city" (click)="searchCity()">
+          {{ city.name }}, {{ city.country }}
+        </mat-option>
+
+        <mat-option
+          *ngIf="city.length === 0 && search.value && search.value.length > 0"
+          value="">
+          No se encontró nada con el término {{ search.value }}
+        </mat-option>
+      </mat-autocomplete>
       </mat-form-field>
 
 
