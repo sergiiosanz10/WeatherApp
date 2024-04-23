@@ -23,7 +23,7 @@ export class GraphicPageComponent implements OnInit{
 
 
   multi: Graphic[] = []
-  view: [number, number] = [700, 300];
+  view: [number, number] = [700, 500];
 
   // options
   legend: boolean = true;

@@ -8,7 +8,7 @@
 
         <div class="grid m-3 dates mb-2" *ngIf="datelist">
 
-        <mat-card class="mr-4 col-3 mb-3 radius card" *ngFor="let date of datelist" >
+        <mat-card class="mr-4 col-12 md:col-3 lg:3 mb-3 radius card" *ngFor="let date of datelist" >
           <div class="col">
               <div class="text-center p-3 border-round-sm bg-primary font-bold">
                 <mat-card-title>{{ getDate(date.dt) === 'Hoy' ? 'Hoy' : (getDate(date.dt) | date: 'EEEE' | titlecase) }}</mat-card-title>
