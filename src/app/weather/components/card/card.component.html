@@ -11,7 +11,7 @@
         <mat-card class="mr-4 col-3 mb-3 radius card" *ngFor="let date of datelist" >
           <div class="col">
               <div class="text-center p-3 border-round-sm bg-primary font-bold">
-                <mat-card-title>{{ getDate(date.dt) | date: 'EEEE' | titlecase }}</mat-card-title>
+                <mat-card-title>{{ getDate(date.dt) === 'Hoy' ? 'Hoy' : (getDate(date.dt) | date: 'EEEE' | titlecase) }}</mat-card-title>
               </div>
               <div class="text-center p-3 border-round-sm bg-primary font-bold">
                 <img class="icon" src="https://openweathermap.org/img/wn/{{date.weather[0].icon}}@2x.png" alt="">

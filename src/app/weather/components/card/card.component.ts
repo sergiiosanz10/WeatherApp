@@ -16,6 +16,11 @@ export class CardComponent implements OnInit{
   getDate(num: number) {
 
     let time = new Date(num * 1000);
+    let today = new Date();
+
+      if (time.getDate() === today.getDate()) {
+        return 'Hoy'
+      }
 
     return time
   }
