@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import {  List } from '../../interfaces/forecast.interface';
 import { Graphic, Series } from '../../interfaces/graphic.interface';
 
@@ -8,7 +8,7 @@ import { Graphic, Series } from '../../interfaces/graphic.interface';
   templateUrl: './graphic-page.component.html',
   styleUrl: './graphic-page.component.css'
 })
-export class GraphicPageComponent implements OnInit{
+export class GraphicPageComponent implements OnInit, OnChanges{
   @Input({required: true}) search: List[] | undefined;
 
   ngOnInit(): void {
@@ -16,14 +16,13 @@ export class GraphicPageComponent implements OnInit{
     console.log(this.multi);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges( ):void {
     this.multi =  this.getGraphics()
-    console.log(this.multi);
   }
 
 
   multi: Graphic[] = []
-  view: [number, number] = [1740, 600];
+  view: [number, number] = [1000, 400];
 
   // options
   legend: boolean = true;

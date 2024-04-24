@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
-      duration: 2000, // Duración en milisegundos
+      duration: 2000, 
     });
   }
 
