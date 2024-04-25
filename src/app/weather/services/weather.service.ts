@@ -21,7 +21,7 @@ export class WeatherService {
   private apiKey: string = '&appid=1f9ccab4cdafe0e22916708e85513df9';
   private serviceUrl: string = 'https://api.openweathermap.org/data/2.5/weather?';
   private serviceForecast: string = 'https://api.openweathermap.org/data/2.5/forecast/daily?';
-  private countries: string = 'http://api.openweathermap.org/geo/1.0/direct?';
+  private countries: string = 'https://api.openweathermap.org/geo/1.0/direct?';
 
 
 
