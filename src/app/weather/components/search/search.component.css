@@ -15,9 +15,10 @@
 .search::-webkit-scrollbar {
   width: 5px;
   height: 10px;
+  display: none;
 }
 
-.search::-webkit-scrollbar-track {
+/* .search::-webkit-scrollbar-track {
   background-color: rgba(57, 184, 216, 0.3)!important;
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -35,7 +36,7 @@
 
 .search::-webkit-scrollbar-thumb:hover {
   background: #dadada;
-}
+} */
 
 .delete{
   color: white;
